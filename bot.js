@@ -77,25 +77,42 @@ client.on('ready', () => {
 
 
 
-
-client.on('message', message => {
-              if (!message.channel.guild) return;
-      if(message.content =='$member')  
-      var IzRo = new Discord.RichEmbed()
-      .setThumbnail(message.author.avatarURL)  
-      .setFooter(message.author.username, message.author.avatarURL) 
-      .setTitle('🌷| Members info') 
-      .addBlankField(true)
-      .addField('📗| Online',  
-      `${message.guild.members.filter(m=>m.presence.status == 'online').size}`)  
-      .addField('📕| DND',`${message.guild.members.filter(m=>m.presence.status == 'dnd').size}`)  
-      .addField('📙| Idle',`${message.guild.members.filter(m=>m.presence.status == 'idle').size}`) 
-      .addField('📓| Offline',`${message.guild.members.filter(m=>m.presence.status == 'offline').size}`) 
-      .addField('➡| Server Members',`${message.guild.memberCount}`) 
-      message.channel.send(IzRo);
-    
-    });
-
+    client.on('guildMemberAdd', member => {
+        let channel = member.guild.channels.find('name', 'welcome✋');
+        let memberavatar = member.user.avatarURL
+          if (!channel) return;
+        let embed = new Discord.RichEmbed()
+            .setColor('RANDOM')
+            .setThumbnail(memberavatar)
+            .addField('🎽 | name :  ',`${member}`)
+            .addField('📢 | نورت السيرفر يا قلبي' , `Welcome to the server, ${member}`)
+            .addField('🆔 | user :', "**[" + `${member.id}` + "]**" )
+                    .addField('➡| انت العضو رقم',`${member.guild.memberCount}`)
+                   
+                      .addField("Name:",`<@` + `${member.id}` + `>`, true)
+                         
+                                         .addField(' الـسيرفر', `${member.guild.name}`,true)
+                                           
+         .setFooter(`${member.guild.name}`)
+            .setTimestamp()
+       
+          channel.sendEmbed(embed);
+        });
+        
+        client.on('guildMemberRemove', member => {
+            var embed = new Discord.RichEmbed()
+            .setAuthor(member.user.username, member.user.avatarURL)
+            .setThumbnail(member.user.avatarURL)
+            .setTitle(`الله معاك ✋:skin-tone-1: 😔`)
+            .setDescription(`مع السلامه تشرفنا بك ✋:skin-tone-1: 😔 `)
+            .addField('👤   تبقي',`**[ ${member.guild.memberCount} ]**`,true)
+            .setColor('RED')
+            .setFooter(`==== نــتــمــنــآ لــكــم آســتــمـــتــآع ====`, 'https://cdn.discordapp.com/attachments/397818254439219217/399292026782351381/shy.png')
+        
+        var channel =member.guild.channels.find('name', 'اسم الروم الي يقول فيه اذا حد غادر')
+        if (!channel) return;
+        channel.send({embed : embed});
+        })
 
 
 
