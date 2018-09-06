@@ -76,44 +76,64 @@ client.on('ready', () => {
 });
 
 
-
-    client.on('guildMemberAdd', member => {
-        let channel = member.guild.channels.find('name', 'welcome✋');
-        let memberavatar = member.user.avatarURL
-          if (!channel) return;
-        let embed = new Discord.RichEmbed()
-            .setColor('RANDOM')
-            .setThumbnail(memberavatar)
-            .addField('🎽 | name :  ',`${member}`)
-            .addField('📢 | نورت السيرفر يا قلبي' , `Welcome to the server, ${member}`)
-            .addField('🆔 | user :', "**[" + `${member.id}` + "]**" )
-                    .addField('➡| انت العضو رقم',`${member.guild.memberCount}`)
-                   
-                      .addField("Name:",`<@` + `${member.id}` + `>`, true)
-                         
-                                         .addField(' الـسيرفر', `${member.guild.name}`,true)
-                                           
-         .setFooter(`${member.guild.name}`)
-            .setTimestamp()
+client.on('message',async msg => {
+     if(msg.channel.type === "$dm") return;
+  if(msg.author.bot) return;
+  var p = "*";
+  if(msg.content.startsWith(p + "setstats")) {
+  if(!msg.guild.member(msg.author).hasPermissions('MANAGE_CHANNELS')) return msg.reply('❌ **go play minecraft**');
+  if(!msg.guild.member(client.user).hasPermissions(['MANAGE_CHANNELS'])) return msg.reply('❌ **البوت لا يمتلك صلاحية**');
+  var ggg= msg.guild.createChannel('SERVER STATS', 'category').then(kk => {
+           var ccc =msg.guild.createChannel('SERVER STATS', 'voice').then(al => {
+                var aa =msg.guild.createChannel('SERVER STATS', 'voice').then(alp => {
+                   var aaa =msg.guild.createChannel('SERVER STATS', 'voice').then(alph => {
+       al.setParent(kk);
+       alp.setParent(kk);
+       alph.setParent(kk);
        
-          channel.sendEmbed(embed);
-        });
-        
-        client.on('guildMemberRemove', member => {
-            var embed = new Discord.RichEmbed()
-            .setAuthor(member.user.username, member.user.avatarURL)
-            .setThumbnail(member.user.avatarURL)
-            .setTitle(`الله معاك ✋:skin-tone-1: 😔`)
-            .setDescription(`مع السلامه تشرفنا بك ✋:skin-tone-1: 😔 `)
-            .addField('👤   تبقي',`**[ ${member.guild.memberCount} ]**`,true)
-            .setColor('RED')
-            .setFooter(`==== نــتــمــنــآ لــكــم آســتــمـــتــآع ====`, 'https://cdn.discordapp.com/attachments/397818254439219217/399292026782351381/shy.png')
-        
-        var channel =member.guild.channels.find('name', 'اسم الروم الي يقول فيه اذا حد غادر')
-        if (!channel) return;
-        channel.send({embed : embed});
-        })
-
+     al.overwritePermissions(msg.guild.id, {
+      CONNECT: false,
+      SPEAK: false
+    });
+     alp.overwritePermissions(msg.guild.id, {
+      CONNECT: false,
+      SPEAK: false
+    });
+     alph.overwritePermissions(msg.guild.id, {
+      CONNECT: false,
+      SPEAK: false
+    });
+  setInterval(() => {
+      var currentTime = new Date(),
+hours = currentTime.getHours() + 3 ,
+minutes = currentTime.getMinutes(),
+Seconds = currentTime.getSeconds(),
+Year = currentTime.getFullYear(),
+Month = currentTime.getMonth() + 1,
+Dat = currentTime.getDate()
+if (minutes < 10) {
+minutes = "0" + minutes;
+}
+var suffix = "AM";
+if (hours >= 12) {
+suffix = "PM";
+hours = hours - 12;
+}
+if (hours == 0) {
+hours = 12;
+}
+     al.setName(`Voice Online :[ ${msg.guild.members.filter(m => m.voiceChannel).size} ]`);
+      alp.setName(`Time :[${hours} : ${minutes} : ${Seconds} ${suffix}]`);
+        alph.setName(`[ Date : [${Year} - ${Month} - ${Dat} ]`);
+ },1000);
+                   })
+    
+                })
+           })
+  })
+           
+  }
+ 
 
 
 
