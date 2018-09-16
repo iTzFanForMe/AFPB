@@ -1,1 +1,1 @@
-worker: node bot.js BotToken ApiKey
+worker: node bot.js
