@@ -265,4 +265,4 @@ ${prefix}queue ⇏ لمعرفة قائمة التشغيل
    }
    }); 
    
-	client.login("NjQwOTMwNDU3NjEyOTc2MTM4.XcBR6Q.UpblmRzFy8UI9dON2GXk9sAAKpk");
+	client.login(process.env.BOT_TOKEN);
