@@ -13,7 +13,7 @@ client.on('message', msg => {
 
 
 client.on("ready", function() {
-  var words = [`By Re Team With FanForMe`, "Re,FanForMe™", "?help"];
+  var words = [`By Re Team With FanForMe`, "Re,FanForMe™", "!help"];
   var l = -1;
   var b = 0;
   var mss = "4000";
@@ -37,7 +37,7 @@ const youtube = new YouTube('AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8');
 const queue = new Map();
  
  
-var prefix = '؟';
+var prefix = '!';
 var servers = {};
 client.on("message", async message => {
     var args = message.content.substring(prefix.length).split(" ");
