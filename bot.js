@@ -13,7 +13,7 @@ client.on('message', msg => {
 
 
 client.on("ready", function() {
-  var words = [`By LORDS Team`, "LORDS BOTS™", "?help"];
+  var words = [`By Re Team With FanForMe`, "Re,FanForMe™", "?help"];
   var l = -1;
   var b = 0;
   var mss = "4000";
